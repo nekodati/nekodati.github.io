@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<meta charset="utf-8">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <title>
+  הלוכסנון
+  </title>
+</head>
+<body>
+
+<center>
+<h1><span class="highlight">הלוכסנון</span></h1>
+<p>קשה לך לקרוא כשהנקודה באמצע משפט לצורך פנייה ניטרלית? או שזה פשוט לא נראה לך טוב בעין? וואלכ, פייר אינף. </p>
+<p>הדבק.י לכאן טקסט כזה (כמו למשל המשפט הזה), בחר.י באיזה תו להחליף את הנקודות - ותהנ.י!</p>
+<textarea id="ftext" name="ftext" rows="4" cols="30" dir="auto">
+</textarea>
+<p>
+תחליף לי את הנקודה ב
+ <input type="text" id="fchar" name="fchar" maxlength="2" size="3" placeholder="/">
+<p>
+ <button type="button" onclick="myFunction()">יאללה, תחליף!</button> 
+ <br>
+ <p id="demo"></p>
+ <br>
+ <p style="font-size:0.75em">נכתב בשלוש בלילה על ידי <a href="https://www.instagram.com/palonsteen/">@palonsteen</a> בהשראת <a href="https://www.facebook.com/tel.aviv.university.confessions/posts/1548444725501986">הוידוי האנונימי הזה</a></p>
+ </center>
+
+<script>
+/*
+Um, hi there. Hebrew and HTML editors is a fucking mess so please enjoy some good ol' English.
+
+Allow me to warn you beforehand. This is horrible code, I know. I'm not a compsci student or even a decent programmer, I'm a fucking video editor.
+
+You can see below I tried to Regex it. Multiple times, in fact! But it kept eating away characters. I'm not smart enough for that shit. It's been like a decade since I used HTML or JavaScript seriously.
+I take no pride in that for loop but it's better than the failed Regex experiments and does the motherfucking job for a website created partially as a joke.
+
+Anyhow. Please enjoy. 
+And just as a little bonus for reading all of this, may I recommend you listen to Artificial Intelligence by Tom Cardy? Great comedy song.
+*/
+
+String.prototype.replaceAt = function(index, replacement) {
+    if (index >= this.length) {
+        return this.valueOf();
+    }
+ 
+    return this.substring(0, index) + replacement + this.substring(index + 1);
+}
+function myFunction()
+{
+let str = document.getElementById("ftext").value; 
+let char = document.getElementById("fchar").value;
+//let result;
+
+if(!char) char = "/";
+
+//result = str.replace(/\.\S/g, char);
+//let result = str.replace(/([a-z\u05D0-\u05EA])\.([a-z\u05D0-\u05EA])/g, char);
+
+for (let i = 0; i < str.length; i++) {
+  if(str[i] === ".")
+  {
+  if(str[i+1] != null && !(/\s/.test(str[i+1])))
+{
+str = str.replaceAt(i, char);
+}  
+  }
+}
+
+document.getElementById("demo").innerHTML = str;
+}
+</script>
+
+</body>
+</html>
